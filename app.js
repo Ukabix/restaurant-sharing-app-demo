@@ -113,5 +113,10 @@ app.get("/about", function (req, res) {
   res.render("about");
 });
 
+// middleware for 404 - will catch any requests that are not handled via other routes
+app.use(function(req, res) {
+  res.render("404");
+});
+
 // setup a server with listen
 app.listen(3000);
