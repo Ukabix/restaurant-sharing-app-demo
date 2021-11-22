@@ -69,7 +69,7 @@ app.get("/restaurants/:id", function(req, res) {
     }
   }
   // at this point we know there is no matchning id
-  res.status(404).render("404");
+  res.render("404");
 });
 
 
@@ -84,18 +84,12 @@ app.post("/recommend", function (req, res) {
   const restaurant = req.body;
   // enrich body with uuid -> new property via uuid
   restaurant.id = uuid.v4();
-  //// create JSON file - /data/restaurants.json
-  /// open that file, write data and store it back
-  // get filepath to restaurants
-  const filePath = path.join(__dirname, "data", "restaurants.json");
-  // open and read file
-  const fileData = fs.readFileSync(filePath);
-  // translate json to array with parser
-  const storedRestaurants = JSON.parse(fileData);
+  // get getStoredRestaurants from restaurant-data.js
+  const restaurants = getStoredRestaurants();
   // add new data to array
-  storedRestaurants.push(restaurant);
-  // save the array as JSON with stringify
-  fs.writeFileSync(filePath, JSON.stringify(storedRestaurants));
+  restaurants.push(restaurant);
+  // call storedResta
+  storedRestaurants(restaurants);
   /// send response
   // redirect user
   res.redirect("/confirm"); // reconfigure html after that
@@ -120,7 +114,7 @@ app.use(function(req, res) {
 
 // middleware for other errors - 4 params!
 app.use(function(error, req, res, next) {
-  res.status(500).render("500");
+  res.status(404).render("500");
 });
 
 // setup a server with listen
