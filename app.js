@@ -46,6 +46,13 @@ app.get("/restaurants", function (req, res) {
     restaurants: storedRestaurants,
   });
 });
+// define path for dynamic routes via colon
+app.get("/restaurants/:id", function(req, res) {
+  // get access to concrete value for id
+  const restaurantId = req.params.id;
+  // render new view with accepted dynamic argument { rid: }
+  res.render("restaurant-detail", { rid: restaurantId });
+});
 
 // serve /recommend
 app.get("/recommend", function (req, res) {
