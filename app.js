@@ -52,9 +52,24 @@ app.get("/restaurants", function (req, res) {
 app.get("/restaurants/:id", function(req, res) {
   // get access to concrete value for id
   const restaurantId = req.params.id;
-  // render new view with accepted dynamic argument { rid: }
-  res.render("restaurant-detail", { rid: restaurantId });
+  /// get data object values via uuid
+  // get filepath to restaurants
+  const filePath = path.join(__dirname, "data", "restaurants.json");
+  // open and read file
+  const fileData = fs.readFileSync(filePath);
+  // translate json to array with parser
+  const storedRestaurants = JSON.parse(fileData);
+  /// find restaurant in array - with for of loop
+  for (const restaurant of storedRestaurants) {
+    // comapre restaurant.id with restaurantId
+    if (restaurant.id === restaurantId) {
+        // render new view with accepted dynamic argument { rid: }
+        // pass restaurant
+        return res.render("restaurant-detail", { restaurant: restaurant });
+      }
+    }
 });
+
 
 // serve /recommend
 app.get("/recommend", function (req, res) {
