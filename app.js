@@ -69,7 +69,7 @@ app.get("/restaurants/:id", function(req, res) {
     }
   }
   // at this point we know there is no matchning id
-  res.render("404");
+  res.status(404).render("404");
 });
 
 
@@ -115,12 +115,12 @@ app.get("/about", function (req, res) {
 
 // middleware for 404 - will catch any requests that are not handled via other routes
 app.use(function(req, res) {
-  res.render("404");
+  res.status(404).render("404");
 });
 
 // middleware for other errors - 4 params!
 app.use(function(error, req, res, next) {
-  res.render("500");
+  res.status(500).render("500");
 });
 
 // setup a server with listen
