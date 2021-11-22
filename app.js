@@ -28,26 +28,20 @@ app.use(express.urlencoded({extended: false}));
 //// register routes
 // serve /index
 app.get("/", function (req, res){
-  // construct a path
-  const htmlFilePath = path.join(__dirname, "views", "index.html");
-  // send 
-  res.sendFile(htmlFilePath);
+  // use render method for ejs
+  res.render("index");
 });
 
 // serve /restaurants
 app.get("/restaurants", function (req, res){
-  // construct a path
-  const htmlFilePath = path.join(__dirname, "views", "restaurants.html");
-  // send 
-  res.sendFile(htmlFilePath);
+  // use render method for ejs
+  res.render("restaurants");
 });
 
 // serve /recommend
 app.get("/recommend", function (req, res){
-  // construct a path
-  const htmlFilePath = path.join(__dirname, "views", "recommend.html");
-  // send 
-  res.sendFile(htmlFilePath);
+  // use render method for ejs
+  res.render("recommend");
 });
 // for user input - make post route handlers
 app.post("/recommend", function(req, res) {
@@ -73,21 +67,15 @@ app.post("/recommend", function(req, res) {
 
 // serve /confirm
 app.get("/confirm", function (req, res){
-  // construct a path
-  const htmlFilePath = path.join(__dirname, "views", "confirm.html");
-  // send 
-  res.sendFile(htmlFilePath);
+  // use render method for ejs
+  res.render("confirm");
 });
 
 // serve /about
 app.get("/about", function (req, res){
-  // construct a path
-  const htmlFilePath = path.join(__dirname, "views", "about.html");
-  // send 
-  res.sendFile(htmlFilePath);
+  // use render method for ejs
+  res.render("about");
 });
-
-//// handling form 
 
 
 
