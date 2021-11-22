@@ -61,13 +61,15 @@ app.get("/restaurants/:id", function(req, res) {
   const storedRestaurants = JSON.parse(fileData);
   /// find restaurant in array - with for of loop
   for (const restaurant of storedRestaurants) {
-    // comapre restaurant.id with restaurantId
+    // compare restaurant.id with restaurantId
     if (restaurant.id === restaurantId) {
         // render new view with accepted dynamic argument { rid: }
         // pass restaurant
         return res.render("restaurant-detail", { restaurant: restaurant });
-      }
     }
+  }
+  // at this point we know there is no matchning id
+  res.render("404");
 });
 
 
