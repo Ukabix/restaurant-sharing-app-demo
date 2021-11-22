@@ -1,3 +1,4 @@
+
 // import filesystem
 const fs = require("fs");
 // import path
@@ -6,6 +7,10 @@ const path = require("path");
 const express = require("express");
 // make an app
 const app = express();
+// set views setting
+app.set("views", path.join(__dirname, "views"));
+// call templating engine
+app.set("view engine", "ejs");
 
 // middleware for static files with static method - css, js
 // for each incoming request express will check the public folder and will return it
