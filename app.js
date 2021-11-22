@@ -34,8 +34,15 @@ app.get("/", function (req, res){
 
 // serve /restaurants
 app.get("/restaurants", function (req, res){
-  // use render method for ejs
-  res.render("restaurants");
+  /// get the number of restaurants
+  // get filepath to restaurants
+  const filePath = path.join(__dirname, "data", "restaurants.json");
+  // open and read file
+  const fileData = fs.readFileSync(filePath);
+  // translate json to array with parser
+  const storedRestaurants = JSON.parse(fileData);
+  /// use render method for ejs, 2nd argument is for dynamic elements in ejs
+  res.render("restaurants", { numberOfRestaurants: storedRestaurants.length });
 });
 
 // serve /recommend
@@ -76,7 +83,6 @@ app.get("/about", function (req, res){
   // use render method for ejs
   res.render("about");
 });
-
 
 
 // setup a server with listen

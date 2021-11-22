@@ -1,16 +1,1 @@
-[
-  {
-    "name": "test",
-    "address": "test",
-    "cuisine": "test",
-    "website": "http://www.test.com",
-    "description": "test"
-  },
-  {
-    "name": "test2",
-    "address": "test2",
-    "cuisine": "test2",
-    "website": "http://www.test2.com",
-    "description": "test2"
-  }
-]
+[{"name":"test","address":"test","cuisine":"test","website":"http://www.test.com","description":"test"},{"name":"test2","address":"test2","cuisine":"test2","website":"http://www.test2.com","description":"test2"},{"name":"test3","address":"test3","cuisine":"test3","website":"http://test3.com","description":"test3"}]
