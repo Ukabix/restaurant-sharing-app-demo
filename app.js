@@ -4,6 +4,12 @@ const path = require("path");
 const express = require("express");
 // make an app
 const app = express();
+
+// middleware for static files with static method - css, js
+// for each incoming request express will check the public folder and will return it
+// if not it will reroute to next handlers
+app.use(express.static("public"));
+
 // serve dummy page
 // app.get("/", function(req, res) {
 //   res.send("<h1>Hello World</h1>");
