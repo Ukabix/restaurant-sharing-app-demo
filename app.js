@@ -2,6 +2,8 @@
 const fs = require("fs");
 // import path
 const path = require("path");
+// import uuid
+const uuid = require("uuid");
 // import express
 const express = require("express");
 // make an app
@@ -61,8 +63,10 @@ app.get("/recommend", function (req, res) {
 });
 // for user input - make post route handlers
 app.post("/recommend", function (req, res) {
-  // extract data - store body!
+  /// extract data - store body!
   const restaurant = req.body;
+  // enrich body with uuid -> new property via uuid
+  restaurant.id = uuid.v4();
   //// create JSON file - /data/restaurants.json
   /// open that file, write data and store it back
   // get filepath to restaurants
