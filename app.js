@@ -33,13 +33,6 @@ app.use("/", defaultRoutes);
 // middleware restaurant routes from restaurant.js
 app.use("/", restaurantRoutes);
 
-// serve dummy page
-// app.get("/", function(req, res) {
-//   res.send("<h1>Hello World</h1>");
-// });
-
-//// register routes
-
 // middleware for 404 - will catch any requests that are not handled via other routes
 app.use(function(req, res) {
   res.status(404).render("404");
@@ -47,7 +40,7 @@ app.use(function(req, res) {
 
 // middleware for other errors - 4 params!
 app.use(function(error, req, res, next) {
-  res.status(404).render("500");
+  res.status(500).render("500");
 });
 
 // setup a server with listen

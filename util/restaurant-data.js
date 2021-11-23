@@ -25,5 +25,5 @@ function storeRestaurants(storableRestaurants) {
 // determine what parts of this file are exported and constraints
 module.exports = {
   getStoredRestaurants: getStoredRestaurants,
-  storedRestaurants: storeRestaurants,
+  storeRestaurants: storeRestaurants,
 };
