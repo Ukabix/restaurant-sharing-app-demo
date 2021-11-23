@@ -33,11 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 // });
 
 //// register routes
-// serve /index
-app.get("/", function (req, res) {
-  // use render method for ejs
-  res.render("index");
-});
+
 
 // serve /restaurants
 app.get("/restaurants", function (req, res) {
@@ -54,7 +50,7 @@ app.get("/restaurants", function (req, res) {
 app.get("/restaurants/:id", function(req, res) {
   // get access to concrete value for id
   const restaurantId = req.params.id;
-  // call resData funcs
+  // call resData 
   const storedRestaurants = resData.getStoredRestaurants();
 
   /// find restaurant in array - with for of loop
