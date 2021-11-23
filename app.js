@@ -95,11 +95,6 @@ app.get("/confirm", function (req, res) {
   res.render("confirm");
 });
 
-// serve /about
-app.get("/about", function (req, res) {
-  // use render method for ejs
-  res.render("about");
-});
 
 // middleware for 404 - will catch any requests that are not handled via other routes
 app.use(function(req, res) {
