@@ -3,8 +3,6 @@
 const fs = require("fs");
 // import path
 const path = require("path");
-// import uuid
-const uuid = require("uuid");
 // import express
 const express = require("express");
 
