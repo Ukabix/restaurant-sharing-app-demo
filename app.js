@@ -1,3 +1,4 @@
+//// import packages
 // import filesystem
 const fs = require("fs");
 // import path
@@ -6,8 +7,13 @@ const path = require("path");
 const uuid = require("uuid");
 // import express
 const express = require("express");
-// make an app
+
+//// import other app files with full relative path
+const resData = require("./util/restaurant-data");
+
+//// make an app from main file
 const app = express();
+
 // set views setting
 app.set("views", path.join(__dirname, "views"));
 // call templating engine
@@ -35,13 +41,9 @@ app.get("/", function (req, res) {
 
 // serve /restaurants
 app.get("/restaurants", function (req, res) {
-  /// get the number of restaurants
-  // get filepath to restaurants
-  const filePath = path.join(__dirname, "data", "restaurants.json");
-  // open and read file
-  const fileData = fs.readFileSync(filePath);
-  // translate json to array with parser
-  const storedRestaurants = JSON.parse(fileData);
+  // call resData funcs
+  const storedRestaurants = resData.getStoredRestaurants();
+
   /// use render method for ejs, 2nd argument is for dynamic elements in ejs
   res.render("restaurants", {
     numberOfRestaurants: storedRestaurants.length,
@@ -52,13 +54,9 @@ app.get("/restaurants", function (req, res) {
 app.get("/restaurants/:id", function(req, res) {
   // get access to concrete value for id
   const restaurantId = req.params.id;
-  /// get data object values via uuid
-  // get filepath to restaurants
-  const filePath = path.join(__dirname, "data", "restaurants.json");
-  // open and read file
-  const fileData = fs.readFileSync(filePath);
-  // translate json to array with parser
-  const storedRestaurants = JSON.parse(fileData);
+  // call resData funcs
+  const storedRestaurants = resData.getStoredRestaurants();
+
   /// find restaurant in array - with for of loop
   for (const restaurant of storedRestaurants) {
     // compare restaurant.id with restaurantId
@@ -85,11 +83,11 @@ app.post("/recommend", function (req, res) {
   // enrich body with uuid -> new property via uuid
   restaurant.id = uuid.v4();
   // get getStoredRestaurants from restaurant-data.js
-  const restaurants = getStoredRestaurants();
+  const restaurants = resData.getStoredRestaurants();
   // add new data to array
   restaurants.push(restaurant);
-  // call storedResta
-  storedRestaurants(restaurants);
+  // call storeRestaurants from resData
+  resData.storeRestaurants(restaurants);
   /// send response
   // redirect user
   res.redirect("/confirm"); // reconfigure html after that

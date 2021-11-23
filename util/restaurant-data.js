@@ -1,5 +1,10 @@
-  // get filepath to restaurants
-  const filePath = path.join(__dirname, "data", "restaurants.json");
+// import filesystem
+const fs = require("fs");
+// import path
+const path = require("path");
+
+// get filepath to restaurants
+const filePath = path.join(__dirname, "data", "restaurants.json");
 
 function getStoredRestaurants() {
   //// create JSON file - /data/restaurants.json
@@ -12,7 +17,13 @@ function getStoredRestaurants() {
   return storedRestaurants;
 }
 
-function storedRestaurants(storableRestaurants) {
+function storeRestaurants(storableRestaurants) {
     // save the array as JSON with stringify
     fs.writeFileSync(filePath, JSON.stringify(storableRestaurants));
 }
+
+// determine what parts of this file are exported and constraints
+module.exports = {
+  getStoredRestaurants: getStoredRestaurants,
+  storedRestaurants: storeRestaurants,
+};
