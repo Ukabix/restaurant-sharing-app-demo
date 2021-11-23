@@ -1,5 +1,7 @@
 // require express
 const express = require("express");
+// import resData
+const resData = require("../util/restaurant-data");
 // use router on express
 const router = express.Router();
 

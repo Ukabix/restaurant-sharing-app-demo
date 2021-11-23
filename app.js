@@ -9,8 +9,7 @@ const uuid = require("uuid");
 const express = require("express");
 
 //// import other app files with full relative path
-// import resData
-const resData = require("./util/restaurant-data");
+
 // import router for default
 const defaultRoutes = require("./routes/default");
 // import router for restaurants
