@@ -12,6 +12,14 @@ router.get("/restaurants", function (req, res) {
   // call resData funcs
   const storedRestaurants = resData.getStoredRestaurants();
 
+  // add sorting - pass a funct to sort - return 1 and -1
+  storedRestaurants.sort(function(resA, resB) {
+    if (resA.name > resB.name) {
+      return 1
+    }
+    return -1;
+  });
+
   /// use render method for ejs, 2nd argument is for dynamic elements in ejs
   res.render("restaurants", {
     numberOfRestaurants: storedRestaurants.length,
