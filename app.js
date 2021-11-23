@@ -11,8 +11,10 @@ const express = require("express");
 //// import other app files with full relative path
 // import resData
 const resData = require("./util/restaurant-data");
-// import router
+// import router for default
 const defaultRoutes = require("./routes/default");
+// import router for restaurants
+const restaurantRoutes = require("./routes/restaurants");
 
 //// make an app from main file
 const app = express();
@@ -33,6 +35,8 @@ app.use(express.urlencoded({ extended: false }));
 // middleware default routes from default.js
 // "/" - every route will be handled with it
 app.use("/", defaultRoutes);
+// middleware restaurant routes from restaurant.js
+app.use("/", restaurantRoutes);
 
 // serve dummy page
 // app.get("/", function(req, res) {
@@ -40,9 +44,6 @@ app.use("/", defaultRoutes);
 // });
 
 //// register routes
-
-
-
 
 // middleware for 404 - will catch any requests that are not handled via other routes
 app.use(function(req, res) {
