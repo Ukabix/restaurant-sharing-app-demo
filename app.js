@@ -1,6 +1,4 @@
 //// import packages
-// import filesystem
-const fs = require("fs");
 // import path
 const path = require("path");
 // import express
