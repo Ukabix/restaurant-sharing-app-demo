@@ -9,13 +9,26 @@ const router = express.Router();
 
 // serve /restaurants
 router.get("/restaurants", function (req, res) {
+  // set order with query
+  let order = req.query.order;
+  let nextOrder = "desc";
+  if (order !== "asc" && order !== "desc") {
+    order = "asc";
+  }
+
+  if ( order === "desc") {
+    nextOrder = "asc";
+  }
   // call resData funcs
   const storedRestaurants = resData.getStoredRestaurants();
 
   // add sorting - pass a funct to sort - return 1 and -1
-  storedRestaurants.sort(function(resA, resB) {
-    if (resA.name > resB.name) {
-      return 1
+  storedRestaurants.sort(function (resA, resB) {
+    if (
+      (order === 'asc' && resA.name > resB.name) ||
+      (order === 'desc' && resB.name > resA.name)
+    ) {
+      return 1;
     }
     return -1;
   });
@@ -24,6 +37,8 @@ router.get("/restaurants", function (req, res) {
   res.render("restaurants", {
     numberOfRestaurants: storedRestaurants.length,
     restaurants: storedRestaurants,
+    // pass order
+    nextOrder: nextOrder,
   });
 });
 // define path for dynamic routes via colon

@@ -6,23 +6,21 @@
   </head>
 
   <body>
-    <%- include("includes/header") %>
-    <%- include("includes/side-drawer") %>
+    <%- include("includes/header") %> <%- include("includes/side-drawer") %>
     <main>
       <h1>Recommended restaurants</h1>
-      <% if (numberOfRestaurants === 0) { %>
+      <% if (numberOfRestaurants===0) { %>
       <p>No restaurants yet, sorry!</p>
       <% } else { %>
       <p>Find your next favorite restaurants with help of our other users!</p>
       <p>We found <%= numberOfRestaurants %> restaurants.</p>
-      <form action="/restaurants" method="GET">
-        <input type="hidden" value="asc" name="order">
-        <button class="btn">Change order</button>
+        <form action="/restaurants" method="GET">
+          <input type="hidden" value="<%= nextOrder %>" name="order">
+          <button class="btn">Change Order</button>
       </form>
       <ul id="restaurants-list">
-        <% for (const restaurant of restaurants) { %>
-          <%- include("includes/restaurants/restaurants_li", {restaurant: restaurant}) %>
-        <% } %>
+        <% for (const restaurant of restaurants) { %> <%-
+        include("includes/restaurants/restaurants_li", {restaurant: restaurant}) %> <% } %>
       </ul>
       <% } %>
     </main>
